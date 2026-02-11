@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+
+<style>
+*{box-sizing:border-box;}
+html,body{
+    margin:0;
+    height:100%;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;   /* Light grey background */
+}
+
+/* ===== PAGE WRAPPER ===== */
+.wrapper{
+    min-height:100vh;
+    padding:30px 40px;
+}
+
+/* ===== TOP BUTTONS ===== */
+.top{
+    display:flex;
+    justify-content:space-between;
+}
+
+/* Grey button with green border */
+.btn{
+    background:#e6e6e6;
+    border:2px solid #8cc63f;
+    padding:12px 45px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+/* ===== WELCOME BOX ===== */
+.welcome{
+    width:420px;
+    margin:50px auto 90px auto;
+    text-align:center;
+    background:#e6e6e6;
+    border:2px solid #8cc63f;
+    padding:16px;
+    border-radius:8px;
+    font-size:18px;
+}
+
+/* ===== LOWER BUTTONS ===== */
+.bottom{
+    display:flex;
+    justify-content:space-between;
+    width:60%;
+    margin:0 auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- TOP -->
+    <div class="top">
+        <button class="btn">Home</button>
+        <button class="btn">LogOut</button>
+    </div>
+
+    <!-- WELCOME -->
+    <div class="welcome">Welcome Admin</div>
+
+    <!-- LOWER BUTTONS -->
+    <div class="bottom">
+        <button class="btn">Maintain User</button>
+        <button class="btn">Maintain Vendor</button>
+    </div>
+
+</div>
+
+</body>
+</html>

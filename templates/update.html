@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Update Status</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 30px;
+}
+
+.btn{
+    background:#4F74B5;
+    border:none;
+    padding:12px 35px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.panel{
+    width:420px;
+    margin:30px auto 10px auto;
+    background:#4F74B5;
+    border-radius:40px;
+    padding:25px 30px 30px 30px;
+    text-align:center;
+}
+
+.title{
+    margin-bottom:20px;
+    font-size:18px;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.option{
+    flex:1;
+    background:linear-gradient(#b7d0e3,#a6c3d8);
+    padding:8px 12px;
+    border-radius:6px;
+    text-align:left;
+}
+
+.update-wrap{
+    width:140px;
+    margin:20px auto 60px auto;
+}
+
+.update-btn{
+    width:100%;
+    background:#4F74B5;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+    <form action="{% url 'vendor_dashboard' %}">
+        <button class="btn">Home</button>
+    </form>
+
+    <form action="{% url 'vendor_logout' %}">
+        <button class="btn">LogOut</button>
+    </form>
+
+</div>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="panel">
+    <div class="title">Update</div>
+
+    <div class="row">
+        <input type="radio" name="status" value="Received" checked>
+        <div class="option">Received</div>
+    </div>
+
+    <div class="row">
+        <input type="radio" name="status" value="Ready for Shipping">
+        <div class="option">Ready for Shipping</div>
+    </div>
+
+    <div class="row">
+        <input type="radio" name="status" value="Out For Delivery">
+        <div class="option">Out For Delivery</div>
+    </div>
+
+</div>
+
+<div class="update-wrap">
+    <button type="submit" class="update-btn">Update</button>
+</div>
+
+</form>
+
+</body>
+</html>

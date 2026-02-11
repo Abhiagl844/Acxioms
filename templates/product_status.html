@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Status</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+/* ===== HEADER ===== */
+.header{
+    width:350px;
+    margin:25px auto;
+    background:#4F74B5;
+    text-align:center;
+    padding:14px;
+    border-radius:4px;
+}
+
+/* ===== PANEL ===== */
+.panel{
+    width:92%;
+    margin:0 auto 50px auto;
+    background:#d3d3d3;
+    padding:30px;
+    border:1px solid #bcbcbc;
+}
+
+/* ===== TOP BUTTONS ===== */
+.top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:45px;
+}
+
+.btn{
+    background:#4F74B5;
+    border:none;
+    padding:14px 45px;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+/* ===== ROW ===== */
+.row{
+    display:flex;
+    gap:25px;
+    margin-bottom:22px;
+}
+
+/* ===== BOX STYLE (FIXED HEIGHT) ===== */
+.box{
+    flex:1;
+    background:#4F74B5;
+    height:55px;              /* <<< KEY CHANGE (taller box) */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:4px;
+    font-size:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Product Status</div>
+
+<div class="panel">
+
+    <div class="top">
+        <button class="btn">Home</button>
+        <button class="btn">LogOut</button>
+    </div>
+
+    <!-- HEADER ROW -->
+    <div class="row">
+        <div class="box">Name</div>
+        <div class="box">E-Mail</div>
+        <div class="box">Address</div>
+        <div class="box">Status</div>
+        <div class="box">Update</div>
+        <div class="box">Delete</div>
+    </div>
+
+    <!-- DATA ROW -->
+    <div class="row">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+</div>
+
+</body>
+</html>

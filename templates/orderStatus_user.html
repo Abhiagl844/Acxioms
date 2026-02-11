@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Order Status</title>
+
+<style>
+*{box-sizing:border-box;}
+html,body{
+    margin:0;
+    height:100%;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+    color:#000;
+}
+
+.wrapper{
+    min-height:100vh;
+    padding:30px 50px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.btn{
+    background:#4F74B5;
+    border:none;
+    padding:12px 45px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.title{
+    width:380px;
+    margin:40px auto 70px auto;
+    text-align:center;
+    background:#4F74B5;
+    padding:14px;
+    border-radius:6px;
+    font-size:18px;
+}
+
+.grid{
+    width:85%;
+    margin:0 auto;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    gap:80px;
+    margin-bottom:35px;
+}
+
+.box{
+    background:#4F74B5;
+    padding:16px;
+    text-align:center;
+    border-radius:4px;
+    min-height:55px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="top">
+
+        <form action="{% url 'user_portal' %}">
+            <button class="btn">Home</button>
+        </form>
+
+        <form action="{% url 'user_logout' %}">
+            <button class="btn">LogOut</button>
+        </form>
+
+    </div>
+
+    <div class="title">User Order Status</div>
+
+    <div class="grid">
+
+        <div class="row">
+            <div class="box">Name</div>
+            <div class="box">E-mail</div>
+            <div class="box">Address</div>
+            <div class="box">Status</div>
+        </div>
+
+        {% for order in orders %}
+        <div class="row">
+            <div class="box">{{ request.session.order_name }}</div>
+            <div class="box">{{ order.user_email }}</div>
+            <div class="box">{{ request.session.order_address }}</div>
+            <div class="box">{{ order.status }}</div>
+        </div>
+        {% empty %}
+        <div class="row">
+            <div class="box" style="grid-column:1/5;">No Orders Found</div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

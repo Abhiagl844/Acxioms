@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vendor Products</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 28px;
+}
+
+.top-btn{
+    background:#e6e6e6;
+    border:2px solid #8cc63f;
+    padding:12px 40px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.center-header{
+    width:220px;
+    margin:0 auto 30px auto;
+    background:#4F74B5;
+    padding:12px;
+    border-radius:6px;
+    text-align:center;
+}
+
+.content{
+    width:900px;
+    margin:0 auto;
+}
+
+.products-tab{
+    width:200px;
+    margin-bottom:25px;
+    background:#4F74B5;
+    padding:12px;
+    border-radius:6px;
+    text-align:center;
+}
+
+.grid{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:180px;
+    height:260px;
+    background:#4F74B5;
+    border-radius:40px;
+    text-align:center;
+    padding-top:22px;
+}
+
+.card p{
+    margin:16px 0;
+}
+
+.cart-btn{
+    margin-top:28px;
+    background:#e6e6e6;
+    border:2px solid #8cc63f;
+    padding:8px 20px;
+    border-radius:4px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+    <form action="{% url 'user_portal' %}">
+        <button class="top-btn">Home</button>
+    </form>
+
+    <form action="{% url 'user_logout' %}">
+        <button class="top-btn">LogOut</button>
+    </form>
+
+</div>
+
+<div class="center-header">Vendor {{ vendor_name }}</div>
+
+<div class="content">
+
+    <div class="products-tab">Products</div>
+
+    <div class="grid">
+
+        {% for product in products %}
+        <div class="card">
+
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }}/-</p>
+
+            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button class="cart-btn">Add to Cart</button>
+            </form>
+
+        </div>
+        {% empty %}
+        <p>No Products Available</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

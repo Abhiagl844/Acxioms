@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Panel</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.wrapper{
+    padding:30px;
+}
+
+.header{
+    background:#4F74B5;
+    padding:12px;
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-around;
+    margin:70px 0;
+}
+
+.btn{
+    background:#4F74B5;
+    border:none;
+    padding:14px 50px;
+    border-radius:6px;
+    cursor:pointer;
+    min-width:150px;
+    text-align:center;
+    position:relative;
+}
+
+.vendor{
+    position:relative;
+}
+
+.vendor select{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    cursor:pointer;
+}
+
+.logout{
+    display:block;
+    margin:90px auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="header">WELCOME {{ request.session.user_email }}</div>
+
+    <div class="row">
+
+        <!-- Vendor Dropdown -->
+        <form method="GET" action="{% url 'products' %}">
+            <div class="vendor btn">
+                Vendor
+                <select name="category" onchange="this.form.submit()">
+                    <option value="">Select</option>
+                    <option value="Catering">Catering</option>
+                    <option value="Florist">Florist</option>
+                    <option value="Decoration">Decoration</option>
+                    <option value="Lighting">Lighting</option>
+                </select>
+            </div>
+        </form>
+
+        <form action="{% url 'cart' %}">
+            <button class="btn">Cart</button>
+        </form>
+
+        <form action="{% url 'request_item' %}">
+            <button class="btn">Guest List</button>
+        </form>
+
+        <form action="{% url 'order_status' %}">
+            <button class="btn">Order Status</button>
+        </form>
+
+    </div>
+
+    <form action="{% url 'user_logout' %}">
+        <button class="btn logout">LogOut</button>
+    </form>
+
+</div>
+
+</body>
+</html>

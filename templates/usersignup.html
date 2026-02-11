@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Sign Up</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #d9d9d9;
+}
+
+/* Top bar buttons */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px 0;
+}
+
+/* Blue buttons */
+.top-btn {
+    background: linear-gradient(#5C84C9, #4F74B5);
+    border: none;
+    padding: 10px 40px;
+    color: #000;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Container */
+.container {
+    width: 900px;
+    margin: 20px auto;
+    background: #eeeeee;
+    border: 1px solid #b5b5b5;
+    padding: 20px 40px 40px;
+}
+
+/* Header */
+.title {
+    background: linear-gradient(#c7dff4, #9dbddc);
+    border: 1px solid #9dbddc;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Row */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+/* Left label */
+.row label {
+    width: 150px;
+    background: linear-gradient(#5C84C9, #4F74B5);
+    color: #000;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    margin-right: 40px;
+}
+
+/* Input bar */
+.row input {
+    width: 500px;
+    padding: 10px;
+    border: none;
+    background: linear-gradient(#5C84C9, #4F74B5);
+    border-radius: 2px;
+    color: #000;
+}
+
+/* Signup button */
+.signup {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.signup button {
+    background: linear-gradient(#5C84C9, #4F74B5);
+    border: none;
+    padding: 10px 40px;
+    color: #000;
+    border-radius: 4px;
+    cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Top buttons -->
+<div class="top-bar">
+    <form method="GET" action="">
+        <button class="top-btn">Chart</button>
+    </form>
+
+    <form method="GET" action="">
+        <button class="top-btn">Back</button>
+    </form>
+</div>
+
+<div class="container">
+
+    <div class="title">Event Management System</div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="row">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="User" required>
+        </div>
+
+        <div class="row">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="User" required>
+        </div>
+
+        <div class="row">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="User" required>
+        </div>
+
+        <div class="signup">
+            <button type="submit">Sign Up</button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

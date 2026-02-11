@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vendor Panel</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Tahoma, Arial;
+        background: #d9d9d9;
+      }
+
+      /* ================= NAV ================= */
+      .topbar {
+        height: 70px;
+        background: #4f74b5;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-inner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+      }
+
+      .welcome {
+        color: #000;
+        font-size: 18px;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .nav-buttons form {
+        margin: 0;
+      }
+
+      .nav-buttons button {
+        background: #e6e6e6;
+        border: 1px solid #8cc63f;
+        border-radius: 6px;
+        padding: 6px 16px;
+        height: 32px;
+        cursor: pointer;
+      }
+
+      /* ================= MAIN ================= */
+      .main {
+        display: flex;
+        height: calc(100vh - 70px);
+      }
+
+      /* ================= LEFT PANEL ================= */
+      .left {
+        width: 34%;
+        background: #4f74b5;
+        padding: 40px 25px 0 25px;
+        margin-top: 20px;
+      }
+
+      .form-box {
+        width: 85%;
+      }
+
+      .box {
+        background: #dcdcdc;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+
+      .box input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        text-align: center;
+      }
+
+      .add-btn {
+        display: block;
+        margin: 10px auto;
+        background: #e6e6e6;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 22px;
+        cursor: pointer;
+      }
+
+      /* ================= RIGHT PANEL ================= */
+      .right {
+        width: 66%;
+        padding: 40px 30px 0 30px;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 150px 1fr 1fr 110px;
+        gap: 15px;
+        margin-bottom: 18px;
+      }
+
+      .h {
+        background: #4f74b5;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 150px 1fr 1fr 110px;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .image {
+        height: 150px;
+        background: #4f74b5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .image img {
+        max-height: 130px;
+      }
+
+      .cell {
+        background: #4f74b5;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .actions form {
+        margin: 0;
+      }
+
+      .act {
+        background: #4f74b5;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topbar">
+      <div class="nav-inner">
+        <div class="welcome">Welcome {{ vendor.name }}</div>
+
+        <div class="nav-buttons">
+          <form action="{% url 'product_status' %}">
+            <button>Product Status</button>
+          </form>
+
+          <form action="{% url 'vendor_products' %}">
+            <button>View Product</button>
+          </form>
+
+          <form action="{% url 'vendor_logout' %}">
+            <button>Log Out</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <div class="form-box">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="box">
+              <input
+                type="text"
+                name="product_name"
+                placeholder="Product Name"
+                required
+              />
+            </div>
+
+            <div class="box">
+              <input
+                type="number"
+                name="product_price"
+                placeholder="Product Price"
+                required
+              />
+            </div>
+
+            <div class="box">
+              <input type="file" name="product_image" required />
+            </div>
+
+            <button class="add-btn">Add The Product</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="header">
+          <div class="h">Product Image</div>
+          <div class="h">Product Name</div>
+          <div class="h">Product Price</div>
+          <div class="h">Action</div>
+        </div>
+
+        {% for product in products %}
+        <div class="row">
+          <div class="image">
+            <img src="{{ product.image.url }}" />
+          </div>
+
+          <div class="cell">{{ product.name }}</div>
+          <div class="cell">Rs {{ product.price }}</div>
+
+          <div class="actions">
+            <form method="POST" action="{% url 'delete_product' product.id %}">
+              {% csrf_token %}
+              <button class="act">Delete</button>
+            </form>
+
+            <form method="GET" action="{% url 'vendor_dashboard' %}">
+              <button class="act">Update</button>
+            </form>
+          </div>
+        </div>
+        {% empty %}
+        <div class="row">
+          <div class="cell" style="grid-column: 1/5">No Products Added Yet</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

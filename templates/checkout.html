@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout Details</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.top-box{
+    width:300px;
+    margin:20px auto;
+    background:#4F74B5;
+    text-align:center;
+    padding:12px;
+    color:black;
+}
+
+.details{
+    width:150px;
+    margin:40px auto;
+    background:#4F74B5;
+    text-align:center;
+    padding:12px;
+    color:black;
+}
+
+.form{
+    width:800px;
+    margin:0 auto;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:35px;
+}
+
+.box{
+    width:45%;
+    background:#4F74B5;
+    padding:18px;
+    border-radius:12px;
+    color:black;
+}
+
+input, select{
+    width:100%;
+    background:transparent;
+    border:none;
+    outline:none;
+    font-size:16px;
+    color:black;
+}
+
+::placeholder{
+    color:black;
+    opacity:1;
+}
+
+select option{
+    color:black;
+}
+
+.order{
+    width:260px;
+    margin:40px auto 80px auto;
+    text-align:center;
+}
+
+.order button{
+    width:100%;
+    background:#4F74B5;
+    padding:14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-box">
+    Item <br>
+    Grand Total {{ grand_total }}/-
+</div>
+
+<div class="details">Details</div>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="form">
+
+    <div class="row">
+        <div class="box">
+            <input type="text" name="name" placeholder="Name" required>
+        </div>
+
+        <div class="box">
+            <input type="text" name="phone" placeholder="Number" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box">
+            <input type="email" name="email" placeholder="E-mail" required>
+        </div>
+
+        <div class="box">
+            <select name="payment_method" required>
+                <option value="">Payment Method</option>
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box">
+            <input type="text" name="address" placeholder="Address" required>
+        </div>
+
+        <div class="box">
+            <input type="text" name="state" placeholder="State" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box">
+            <input type="text" name="city" placeholder="City" required>
+        </div>
+
+        <div class="box">
+            <input type="text" name="pincode" placeholder="Pin Code" required>
+        </div>
+    </div>
+
+</div>
+
+<div class="order">
+    <button type="submit">Order Now</button>
+</div>
+
+</form>
+
+</body>
+</html>

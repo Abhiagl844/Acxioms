@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thank You</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.popup{
+    width:420px;
+    margin:20px auto;
+    text-align:center;
+}
+
+.thank{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.total{
+    width:220px;
+    margin:0 auto 30px auto;
+    background:#4F74B5;
+    padding:14px;
+    border-radius:4px;
+    color:black;
+}
+
+.grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.box{
+    width:48%;
+    background:#4F74B5;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:20px;
+    color:black;
+}
+
+.btn{
+    width:250px;
+    margin:25px auto;
+}
+
+.btn button{
+    width:100%;
+    background:#4F74B5;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="popup">
+
+    <div class="thank">THANK YOU</div>
+
+    <div class="total">Total Amount {{ request.session.order_total }}/-</div>
+
+    <div class="grid">
+
+        <div class="box">{{ request.session.order_name }}</div>
+        <div class="box">{{ request.session.order_phone }}</div>
+
+        <div class="box">{{ request.session.order_email }}</div>
+        <div class="box">{{ request.session.order_payment }}</div>
+
+        <div class="box">{{ request.session.order_address }}</div>
+        <div class="box">{{ request.session.order_state }}</div>
+
+        <div class="box">{{ request.session.order_city }}</div>
+        <div class="box">{{ request.session.order_pincode }}</div>
+
+    </div>
+
+    <div class="btn">
+        <form action="{% url 'products' %}">
+            <button>Continue Shopping</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

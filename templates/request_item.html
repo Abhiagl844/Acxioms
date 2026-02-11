@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Request Item</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 30px;
+}
+
+.btn{
+    background:#4F74B5;
+    border:none;
+    padding:12px 40px;
+    border-radius:4px;
+    cursor:pointer;
+    color:black;
+}
+
+.center-btn{
+    width:300px;
+    text-align:center;
+}
+
+.grid{
+    display:flex;
+    justify-content:space-evenly;
+    margin-top:60px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:110px;
+    height:180px;
+    background:#4F74B5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:4px;
+    color:black;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+    <form action="{% url 'user_portal' %}">
+        <button class="btn">Home</button>
+    </form>
+
+    <button class="btn center-btn">Request Item</button>
+
+    <form action="{% url 'user_logout' %}">
+        <button class="btn">LogOut</button>
+    </form>
+
+</div>
+
+<div class="grid">
+
+    {% for item in request_items %}
+    <form method="POST" action="{% url 'send_request_item' item.id %}">
+        {% csrf_token %}
+        <button class="card">{{ item.name }}</button>
+    </form>
+    {% empty %}
+        <p style="text-align:center;width:100%;">No Items Available</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

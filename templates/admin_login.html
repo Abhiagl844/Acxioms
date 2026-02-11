@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Management Panel</title>
+
+<style>
+*{box-sizing:border-box;}
+html,body{
+    margin:0;
+    height:100%;
+    font-family:Tahoma,Arial;
+    background:#d9d9d9;
+}
+
+.btn{
+    background:#e6e6e6;
+    border:2px solid #8cc63f;
+    border-radius:8px;
+    padding:12px 38px;
+    font-size:15px;
+    cursor:pointer;
+    min-width:180px;
+    text-align:center;
+}
+
+.home{
+    position:absolute;
+    top:25px;
+    left:30px;
+}
+
+.membership{
+    position:absolute;
+    top:120px;
+    left:30px;
+}
+
+.user{
+    position:absolute;
+    top:260px;
+    left:30px;
+}
+
+.logout{
+    position:absolute;
+    top:25px;
+    right:30px;
+}
+
+.center{
+    position:absolute;
+    top:120px;
+    left:55%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.group-gap{
+    margin-top:60px;
+}
+</style>
+</head>
+
+<body>
+
+<form action="{% url 'admin_dashboard' %}">
+    <button class="btn home">Home</button>
+</form>
+
+<form action="{% url 'admin_logout' %}">
+    <button class="btn logout">LogOut</button>
+</form>
+
+<form>
+    <button type="button" class="btn membership">Membership</button>
+</form>
+
+<form>
+    <button type="button" class="btn user">User Management</button>
+</form>
+
+<div class="center">
+
+    <!-- Membership Add -->
+    <form action="{% url 'add_membership' %}">
+        <button class="btn">Add Membership</button>
+    </form>
+
+    <!-- Membership Update -->
+    <form action="{% url 'update_membership' %}">
+        <button class="btn">Update Membership</button>
+    </form>
+
+    <div class="group-gap"></div>
+
+    <!-- User Add -->
+    <form action="{% url 'admin_reports' %}">
+        <button class="btn">View Users</button>
+    </form>
+
+    <!-- User Update -->
+    <form action="{% url 'admin_transactions' %}">
+        <button class="btn">User Transactions</button>
+    </form>
+
+</div>
+
+</body>
+</html>
